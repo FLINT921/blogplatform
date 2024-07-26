@@ -1,0 +1,33 @@
+$color: #1890ff;
+
+.submitButton {
+  margin-top: 21px;
+  padding: 8px 0;
+  width: 100%;
+  max-width: 319px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  background: $color;
+  border: none;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.textUnderButton {
+  color: #8c8c8c;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 20px;
+  .sign {
+    padding-left: 5px;
+    color: $color;
+    text-decoration-line: none;
+  }
+}
