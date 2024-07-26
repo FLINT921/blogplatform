@@ -12,13 +12,7 @@ const articleApi = apiBase.injectEndpoints({
       }),
       providesTags: (res) =>
         res?.articles
-          ? [
-              ...res.articles.map(({ slug }) => ({
-                type: 'Articles',
-                id: slug,
-              })),
-              { type: 'Articles', id: 'LIST' },
-            ]
+          ? [...res.articles.map(({ slug }) => ({ type: 'Articles', id: slug })), { type: 'Articles', id: 'LIST' }]
           : [{ type: 'Articles', id: 'LIST' }],
     }),
     getArticle: build.query({

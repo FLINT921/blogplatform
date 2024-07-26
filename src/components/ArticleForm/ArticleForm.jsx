@@ -63,9 +63,7 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
             })}
           />
         </label>
-        <p className={classes.errorText}>
-          {errors?.title?.message?.toString()}
-        </p>
+        <p className={classes.errorText}>{errors?.title?.message?.toString()}</p>
         <label className={classes.label}>
           Short description
           <input
@@ -117,17 +115,11 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
                       .includes(tagValue) || 'Tag must be unique!',
                 })}
               />
-              <button
-                className={classNames(classes.button, classes.delete)}
-                onClick={() => remove(index)}
-              >
+              <button className={classNames(classes.button, classes.delete)} onClick={() => remove(index)}>
                 Delete
               </button>
               {fields.length - 1 === index && (
-                <button
-                  className={classNames(classes.button, classes.add)}
-                  onClick={() => append({ name: '' })}
-                >
+                <button className={classNames(classes.button, classes.add)} onClick={() => append({ name: '' })}>
                   Add tag
                 </button>
               )}

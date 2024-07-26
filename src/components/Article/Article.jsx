@@ -18,8 +18,7 @@ const Article = ({ article }) => {
 
   const navigate = useNavigate();
 
-  const [deleteArticleRequest, { isSuccess, error }] =
-    articleApi.useDeleteArticleMutation();
+  const [deleteArticleRequest, { isSuccess, error }] = articleApi.useDeleteArticleMutation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -42,16 +41,7 @@ const Article = ({ article }) => {
     if (slug) deleteArticleRequest(slug);
   };
 
-  const {
-    title,
-    slug: articleSlug,
-    tagList,
-    description,
-    author,
-    favorited,
-    favoritesCount,
-    createdAt,
-  } = article;
+  const { title, slug: articleSlug, tagList, description, author, favorited, favoritesCount, createdAt } = article;
 
   const isEnoughPage = !!slug;
 
@@ -59,19 +49,10 @@ const Article = ({ article }) => {
     <div className={classes.article}>
       <div className={classNames(classes.text, classes.open)}>
         <div className={classes.title}>
-          <Link
-            className={classes.title}
-            to={`${elementsRoutes.ARTICLE}/${articleSlug}`}
-          >
-            {!isEnoughPage && title?.length > 110
-              ? `${title.slice(0, 100)}...`
-              : title}
+          <Link className={classes.title} to={`${elementsRoutes.ARTICLE}/${articleSlug}`}>
+            {!isEnoughPage && title?.length > 110 ? `${title.slice(0, 100)}...` : title}
           </Link>
-          <Likes
-            favorited={favorited}
-            favoritesCount={favoritesCount}
-            slug={articleSlug}
-          />
+          <Likes favorited={favorited} favoritesCount={favoritesCount} slug={articleSlug} />
         </div>
 
         <div className={classes.tags}>
@@ -94,11 +75,7 @@ const Article = ({ article }) => {
           })}
         </p>
         <img
-          src={
-            author.image
-              ? author.image
-              : 'https://platform.kata.academy/images/profile-big-photo.png'
-          }
+          src={author.image ? author.image : 'https://platform.kata.academy/images/profile-big-photo.png'}
           alt='user-img'
           className={classes.userImg}
         />
@@ -111,9 +88,7 @@ const Article = ({ article }) => {
               placement='right'
               onConfirm={() => deleteArticle()}
             >
-              <button className={classNames(classes.button, classes.delete)}>
-                Delete
-              </button>
+              <button className={classNames(classes.button, classes.delete)}>Delete</button>
             </Popconfirm>
             <Link
               className={classNames(classes.button, classes.edit)}

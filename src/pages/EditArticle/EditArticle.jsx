@@ -10,17 +10,14 @@ import elementsRoutes from '../../routes';
 
 const EditArticle = () => {
   const { slug } = useParams();
-  const { data: fetchedArticles, isLoading: articleLoading } =
-    articleApi.useGetArticleQuery({
-      slug,
-    });
+  const { data: fetchedArticles, isLoading: articleLoading } = articleApi.useGetArticleQuery({
+    slug,
+  });
 
   const { username } = useSelector((state) => state.user);
 
-  const [
-    editArticleRequest,
-    { data, isSuccess: isArticleCreated, error: editError },
-  ] = articleApi.useEditArticleMutation();
+  const [editArticleRequest, { data, isSuccess: isArticleCreated, error: editError }] =
+    articleApi.useEditArticleMutation();
 
   const submitHandler = (article) => {
     if (slug) editArticleRequest({ body: article, slug });
@@ -56,12 +53,7 @@ const EditArticle = () => {
     );
   }
 
-  return (
-    <ArticleForm
-      submitHandler={submitHandler}
-      fetchedArticles={fetchedArticles}
-    />
-  );
+  return <ArticleForm submitHandler={submitHandler} fetchedArticles={fetchedArticles} />;
 };
 
 export default EditArticle;

@@ -32,8 +32,7 @@ const Form = ({ title, onSubmit, authError }) => {
 
   useEffect(() => {
     if (authError) {
-      const { username: usernameError, email: emailError } =
-        authError.data.errors;
+      const { username: usernameError, email: emailError } = authError.data.errors;
       if (usernameError) toast.error(`Username ${usernameError}`);
       if (emailError) toast.error(`Email ${emailError}`);
     }
@@ -55,15 +54,11 @@ const Form = ({ title, onSubmit, authError }) => {
     if (authError) reset();
   };
 
-  if (!token && titleSB === 'Save')
-    return <Navigate to={`${elementsRoutes.HOME}`} />;
+  if (!token && titleSB === 'Save') return <Navigate to={`${elementsRoutes.HOME}`} />;
 
   return (
     <div className={classNames(classes.window, classes.center)}>
-      <form
-        className={classes.formInput}
-        onSubmit={handleSubmit(onSubmitHandler)}
-      >
+      <form className={classes.formInput} onSubmit={handleSubmit(onSubmitHandler)}>
         <h3 className={classes.head}>{title}</h3>
         {titleSB === 'Create' || titleSB === 'Save' ? (
           <label className={classes.label}>
@@ -80,11 +75,7 @@ const Form = ({ title, onSubmit, authError }) => {
                 required: 'The field must be filled in.',
               })}
             />
-            {errors?.username && (
-              <p className={classes.errorText}>
-                {errors?.username?.message || 'Error'}{' '}
-              </p>
-            )}
+            {errors?.username && <p className={classes.errorText}>{errors?.username?.message || 'Error'} </p>}
             {authError?.data.errors.username && (
               <p className='fieldError'>{`Username ${authError?.data.errors.username}`}</p>
             )}
@@ -112,14 +103,8 @@ const Form = ({ title, onSubmit, authError }) => {
               },
             })}
           />
-          {errors?.email && (
-            <p className={classes.errorText}>
-              {errors?.email?.message || 'Error'}{' '}
-            </p>
-          )}
-          {authError?.data.errors.email && (
-            <p className='fieldError'>{`Email ${authError?.data.errors.email}`}</p>
-          )}
+          {errors?.email && <p className={classes.errorText}>{errors?.email?.message || 'Error'} </p>}
+          {authError?.data.errors.email && <p className='fieldError'>{`Email ${authError?.data.errors.email}`}</p>}
         </label>
         {titleSB === 'Create' || titleSB === 'Login' ? (
           <label className={classes.label}>
@@ -143,11 +128,7 @@ const Form = ({ title, onSubmit, authError }) => {
                 },
               })}
             />
-            {errors?.password && (
-              <p className={classes.errorText}>
-                {errors?.password?.message || 'Error'}{' '}
-              </p>
-            )}
+            {errors?.password && <p className={classes.errorText}>{errors?.password?.message || 'Error'} </p>}
           </label>
         ) : (
           ''
@@ -164,16 +145,10 @@ const Form = ({ title, onSubmit, authError }) => {
               })}
               {...register('repPassword', {
                 required: 'Password is required',
-                validate: (value) =>
-                  value === String(getValues().password) ||
-                  'Passwords must match',
+                validate: (value) => value === String(getValues().password) || 'Passwords must match',
               })}
             />
-            {errors?.repPassword && (
-              <p className={classes.errorText}>
-                {errors?.repPassword?.message || 'Error'}{' '}
-              </p>
-            )}
+            {errors?.repPassword && <p className={classes.errorText}>{errors?.repPassword?.message || 'Error'} </p>}
           </label>
         )}
         {titleSB === 'Save' && (
@@ -188,11 +163,7 @@ const Form = ({ title, onSubmit, authError }) => {
               })}
               {...register('newPassword')}
             />
-            {errors?.newPassword && (
-              <p className={classes.errorText}>
-                {errors?.newPassword?.message || 'Error'}{' '}
-              </p>
-            )}
+            {errors?.newPassword && <p className={classes.errorText}>{errors?.newPassword?.message || 'Error'} </p>}
           </label>
         )}
         {titleSB === 'Save' && (
@@ -208,11 +179,7 @@ const Form = ({ title, onSubmit, authError }) => {
               defaultValue={image || ''}
               {...register('avatarImg')}
             />
-            {errors?.avatarImg && (
-              <p className={classes.errorText}>
-                {errors?.avatarImg?.message || 'Error'}{' '}
-              </p>
-            )}
+            {errors?.avatarImg && <p className={classes.errorText}>{errors?.avatarImg?.message || 'Error'} </p>}
           </label>
         )}
 

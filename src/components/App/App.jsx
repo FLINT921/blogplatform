@@ -29,8 +29,7 @@ const App = () => {
         .unwrap()
         .then((data) => {
           const { username, email, token, image } = data.user;
-          if (data)
-            dispatch(setUser({ username, email, token, image: image || null }));
+          if (data) dispatch(setUser({ username, email, token, image: image || null }));
         });
     }
   }, []);
@@ -54,20 +53,11 @@ const App = () => {
         <Route path={`${elementsRoutes.SIGN_IN}`} element={<SingIn />} />
         <Route path={`${elementsRoutes.SIGN_UP}`} element={<SingUp />} />
         <Route path={`${elementsRoutes.PROFILE}`} element={<Edit />} />
-        <Route
-          path={`${elementsRoutes.CREATE_ARTICLE}`}
-          element={<CreateArticle />}
-        />
-        <Route
-          path={`${elementsRoutes.ARTICLE}/:slug${elementsRoutes.EDIT_ARTICLE}`}
-          element={<EditArticle />}
-        />
+        <Route path={`${elementsRoutes.CREATE_ARTICLE}`} element={<CreateArticle />} />
+        <Route path={`${elementsRoutes.ARTICLE}/:slug${elementsRoutes.EDIT_ARTICLE}`} element={<EditArticle />} />
         <Route path={`${elementsRoutes.HOME}`} element={<ListArticles />} />
         <Route path={`${elementsRoutes.ARTICLE}`} element={<ListArticles />} />
-        <Route
-          path={`${elementsRoutes.ARTICLE}/:slug`}
-          element={<ArticleItem />}
-        />
+        <Route path={`${elementsRoutes.ARTICLE}/:slug`} element={<ArticleItem />} />
       </Routes>
     </div>
   );

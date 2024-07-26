@@ -7,8 +7,7 @@ import articleApi from '../../service/articleApi';
 import elementsRoutes from '../../routes';
 
 const CreateArticle = () => {
-  const [createArticle, { data, isSuccess, error }] =
-    articleApi.useCreateArticleMutation();
+  const [createArticle, { data, isSuccess, error }] = articleApi.useCreateArticleMutation();
 
   const navigate = useNavigate();
 

@@ -10,8 +10,7 @@ import { setUser } from '../../store/userSlice';
 import elementsRoutes from '../../routes';
 
 const SingIn = () => {
-  const [loginRequest, { data, isSuccess, error: authError }] =
-    userApi.useLoginMutation();
+  const [loginRequest, { data, isSuccess, error: authError }] = userApi.useLoginMutation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

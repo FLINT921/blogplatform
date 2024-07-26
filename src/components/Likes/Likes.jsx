@@ -8,10 +8,8 @@ import articleApi from '../../service/articleApi';
 import classes from './Likes.module.scss';
 
 const Likes = ({ favorited, favoritesCount, slug }) => {
-  const [likeArticle, { isError: isLikeError }] =
-    articleApi.useLikeArticleMutation();
-  const [removeLikeArticle, { isError: isRemoveLikedError }] =
-    articleApi.useRemoveLikeFromArticleMutation();
+  const [likeArticle, { isError: isLikeError }] = articleApi.useLikeArticleMutation();
+  const [removeLikeArticle, { isError: isRemoveLikedError }] = articleApi.useRemoveLikeFromArticleMutation();
 
   const { username } = useSelector((state) => state.user);
   useEffect(() => {

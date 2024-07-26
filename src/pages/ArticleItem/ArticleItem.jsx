@@ -6,11 +6,7 @@ import articleApi from '../../service/articleApi';
 
 const ArticleItem = () => {
   const { slug } = useParams();
-  const {
-    data,
-    isLoading,
-    isError: notAvailable,
-  } = articleApi.useGetArticleQuery({ slug });
+  const { data, isLoading, isError: notAvailable } = articleApi.useGetArticleQuery({ slug });
 
   const { article } = data ?? {};
 

@@ -10,8 +10,7 @@ import { setUser } from '../../store/userSlice';
 import elementsRoutes from '../../routes';
 
 const SingUp = () => {
-  const [registrationRequest, { data, isSuccess, error: authError }] =
-    userApi.useRegisterUserMutation();
+  const [registrationRequest, { data, isSuccess, error: authError }] = userApi.useRegisterUserMutation();
 
   const dispatch = useDispatch();
 
@@ -31,13 +30,7 @@ const SingUp = () => {
     console.log(username, email, password);
     registrationRequest({ user: { username, email, password } });
   };
-  return (
-    <Form
-      title={'Create new account'}
-      onSubmit={onSubmit}
-      authError={authError}
-    />
-  );
+  return <Form title={'Create new account'} onSubmit={onSubmit} authError={authError} />;
 };
 
 export default SingUp;

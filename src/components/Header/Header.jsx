@@ -19,24 +19,14 @@ const Header = () => {
       <div className={classes.rightSide}>
         {token ? (
           <>
-            <Link
-              className={classes.createArticleButton}
-              to={`${elementsRoutes.CREATE_ARTICLE}`}
-            >
+            <Link className={classes.createArticleButton} to={`${elementsRoutes.CREATE_ARTICLE}`}>
               Create article
             </Link>
             <div className={classes.profile}>
-              <Link
-                className={classes.profileUsername}
-                to={`${elementsRoutes.PROFILE}`}
-              >
+              <Link className={classes.profileUsername} to={`${elementsRoutes.PROFILE}`}>
                 {username}
                 <img
-                  src={
-                    image
-                      ? image
-                      : 'https://platform.kata.academy/images/profile-big-photo.png'
-                  }
+                  src={image ? image : 'https://platform.kata.academy/images/profile-big-photo.png'}
                   alt='user-img'
                   className={classes.userImg}
                 />
@@ -55,16 +45,10 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link
-              className={classes.signInButton}
-              to={`${elementsRoutes.SIGN_IN}`}
-            >
+            <Link className={classes.signInButton} to={`${elementsRoutes.SIGN_IN}`}>
               Sign In
             </Link>
-            <Link
-              className={classes.signUpButton}
-              to={`${elementsRoutes.SIGN_UP}`}
-            >
+            <Link className={classes.signUpButton} to={`${elementsRoutes.SIGN_UP}`}>
               Sign Up
             </Link>
           </>

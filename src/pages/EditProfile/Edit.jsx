@@ -10,8 +10,7 @@ import { setUser } from '../../store/userSlice';
 import elementsRoutes from '../../routes';
 
 const Edit = () => {
-  const [editUserRequest, { data, isSuccess, error: authError }] =
-    userApi.useEditUserMutation();
+  const [editUserRequest, { data, isSuccess, error: authError }] = userApi.useEditUserMutation();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,9 +45,7 @@ const Edit = () => {
       },
     });
   };
-  return (
-    <Form title={'Edit Profile'} onSubmit={onSubmit} authError={authError} />
-  );
+  return <Form title={'Edit Profile'} onSubmit={onSubmit} authError={authError} />;
 };
 
 export default Edit;

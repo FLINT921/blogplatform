@@ -20,9 +20,7 @@ const ListArticles = () => {
   }, [page]);
   return (
     <>
-      {isError && (
-        <h3>An error occurred while loading data. Please refresh the page!</h3>
-      )}
+      {isError && <h3>An error occurred while loading data. Please refresh the page!</h3>}
       {isLoading ? (
         <Spin size='large' />
       ) : (
