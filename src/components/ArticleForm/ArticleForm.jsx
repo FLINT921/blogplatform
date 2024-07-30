@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import classNames from 'classnames';
 
@@ -23,22 +24,38 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
       })) || [{ name: '' }],
     },
   });
+
   const { fields, append, remove } = useFieldArray({
     name: 'tagList',
     control,
   });
 
+  useEffect(() => {
+    if (fields.length === 0) {
+      append({ name: '' });
+    }
+  }, [fields, append]);
+
   const onSubmit = (submitData) => {
     const { title, description, text, tagList } = submitData;
+
+    const filteredTagList = tagList.map((tag) => tag.name.trim()).filter((tag) => tag !== '');
 
     submitHandler({
       article: {
         title,
         description,
         body: text,
-        tagList: tagList.map((tag) => tag.name),
+        tagList: filteredTagList,
       },
     });
+  };
+
+  const handleRemove = (index) => {
+    remove(index);
+    if (fields.length === 1) {
+      append({ name: '' });
+    }
   };
 
   return (
@@ -56,9 +73,9 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
             type='text'
             {...register('title', {
               required: 'Title is required',
-              pattern: {
+              maxLength: {
                 value: 1000,
-                message: 'Contains no more than 1000 words',
+                message: 'Contains no more than 1000 characters',
               },
             })}
           />
@@ -87,9 +104,11 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
               [classes.error]: errors.description,
             })}
             placeholder='Text'
-            type='textarea'
             {...register('text', {
               required: 'Text is required',
+              validate: {
+                notEmpty: (value) => value.trim() !== '' || 'Text cannot be empty or spaces only',
+              },
             })}
           />
         </label>
@@ -101,9 +120,8 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
                 className={classNames(classes.input, classes.tag)}
                 type='text'
                 placeholder='Tag'
-                defaultValue={''}
+                defaultValue={field.name}
                 {...register(`tagList.${index}.name`, {
-                  required: 'Tag is required',
                   pattern: {
                     value: /^[a-zA-Z0-9]+$/,
                     message: 'Use only English letters and numbers',
@@ -115,11 +133,19 @@ const ArticleForm = ({ submitHandler, fetchedArticles }) => {
                       .includes(tagValue) || 'Tag must be unique!',
                 })}
               />
-              <button className={classNames(classes.button, classes.delete)} onClick={() => remove(index)}>
+              <button
+                type='button'
+                className={classNames(classes.button, classes.delete)}
+                onClick={() => handleRemove(index)}
+              >
                 Delete
               </button>
               {fields.length - 1 === index && (
-                <button className={classNames(classes.button, classes.add)} onClick={() => append({ name: '' })}>
+                <button
+                  type='button'
+                  className={classNames(classes.button, classes.add)}
+                  onClick={() => append({ name: '' })}
+                >
                   Add tag
                 </button>
               )}
